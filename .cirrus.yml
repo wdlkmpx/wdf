@@ -1,0 +1,34 @@
+# https://cirrus-ci.org/guide/docker-builder-vm/
+
+env:
+  CIRRUS_CLONE_DEPTH: 1
+
+docker_builder:
+  only_if: $CIRRUS_PR == ''
+  script: ./build.sh
+
+#docker_builder:
+#  only_if: $CIRRUS_PR == ''
+#  setup_script:
+#    - docker buildx create --name wbuilder
+#    - docker buildx use wbuilder
+#    - docker buildx inspect --bootstrap
+#  env:
+#    DOCKER_USERNAME: ENCRYPTED[]
+#    DOCKER_PASSWORD: ENCRYPTED[]
+#  login_script: printenv DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+#  build_script: docker buildx build --push --platform linux/s390x --tag wdlkmpx/gcc:s390x_debian . s390x_debian
+
+
+#docker_builder:
+#  only_if: $CIRRUS_PR == ''
+#  setup_script:
+#    - docker buildx create --name wbuilder
+#    - docker buildx use wbuilder
+#    - docker buildx inspect --bootstrap
+#  env:
+#    DOCKER_USERNAME: ENCRYPTED[]
+#    DOCKER_PASSWORD: ENCRYPTED[]
+#  login_script: printenv DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+#  build_script: docker buildx build --push --platform linux/s390x --tag wdlkmpx/gcc:s390x_alpine . s390x_alpine
+
